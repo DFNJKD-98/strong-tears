@@ -1,0 +1,11 @@
+body{
+    background: #f2f1fa;
+    margin: 0;
+    padding: 0;
+}
+tr:hover{
+    background: #f4b59a;
+}
+td{
+    text-align: center;
+}
