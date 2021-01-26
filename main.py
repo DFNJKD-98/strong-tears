@@ -15,8 +15,8 @@ def getJsonFileNameList():
 
 
 # 导入所有json数据----重新建立数据库
-def importAllJsonData():
-    database = Database.Database()
+def importAllJsonData(dbType):
+    database = Database.Database(dbType=dbType)
     nameList = getJsonFileNameList()
     for name in nameList:
         print('开始记录 {} 文件'.format(name))
@@ -36,11 +36,11 @@ def importAllJsonData():
 
 
 # 爬取和保存数据完整操作----一次完整操作的封装
-def allSteps():
+def allSteps(dbType):
     # 建立数据库链接
-    database = Database.Database()
+    database = Database.Database(dbType=dbType)
     # 服务导航
-    baseInfo, songList, sheet = serveGuid()
+    baseInfo, songList, sheet = serveGuid(database)
     # 输出对象信息
     sheet.outputInfo(songList)
     # 根据对象创建表格
@@ -49,13 +49,3 @@ def allSteps():
     database.insert_data(sheet.fileName, songList)
     # 完善索引表
     database.record_basicInfo(baseInfo)
-
-
-allSteps()
-# database = Database.Database()
-# database.deleteAllTable()
-# importAllJsonData()
-
-
-# 耳机分你一个_想和你开启好心情
-# ./jsonFileList/7444822840.json
